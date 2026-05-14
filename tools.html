@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用工具 - GameHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .tools-hero {
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--highlight) 100%);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+        .tools-hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tools-hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        .tools-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+        .tool-card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .tool-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .tool-card .tool-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .tool-card .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        .tool-card .tool-tag {
+            background: rgba(233,69,96,0.15);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .tool-card .tool-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tool-card .tool-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .tool-card .tool-link:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+        }
+        .tool-card .tool-link.green {
+            background: #27ae60;
+        }
+        .tool-card .tool-link.green:hover {
+            background: #2ecc71;
+        }
+        .tool-card .tool-link.blue {
+            background: #2980b9;
+        }
+        .tool-card .tool-link.blue:hover {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">GameHub</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="category.html?type=pc">PC游戏</a>
+                <a href="tools.html" class="active">常用工具</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索工具...">
+                <button class="search-btn" onclick="searchTools()">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 横幅区域 -->
+    <section class="tools-hero">
+        <div class="container">
+            <h1>🛠️ 常用工具下载</h1>
+            <p>游戏修改器、必备工具、系统组件合集</p>
+        </div>
+    </section>
+
+    <!-- 工具列表 -->
+    <main class="tools-content">
+        <div class="tools-grid" id="toolsGrid"></div>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GameHub. All rights reserved.</p>
+            <p>本页面仅作展示用途</p>
+        </div>
+    </footer>
+
+    <script>
+        const toolsData = [
+            {
+                "name": "Cheat Engine",
+                "icon": "🔧",
+                "desc": "经典内存修改工具，支持搜索、修改游戏内存数据。功能强大的开源修改器，适用于绝大多数PC游戏。支持单机和联机游戏内存修改。",
+                "tags": ["修改器", "内存编辑", "开源"],
+                "downloadUrl": "https://www.cheatengine.org/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "WeMod",
+                "icon": "⚡",
+                "desc": "全球最大的游戏修改器平台，支持数千款热门游戏的即时修改。一键启用无限生命、无限弹药等功能，界面简洁易用。",
+                "tags": ["修改器", "一键修改", "热门"],
+                "downloadUrl": "https://www.wemod.com/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "FLiNG Trainer",
+                "icon": "🛡️",
+                "desc": "知名单机游戏修改器，支持大量3A大作。提供无限生命、无限金钱、超级速度等经典修改功能，更新及时。",
+                "tags": ["修改器", "单机游戏", "中文"],
+                "downloadUrl": "https://flingtrainer.com/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "风灵月影修改器",
+                "icon": "🌙",
+                "desc": "国内知名游戏修改器，支持海量中文游戏。简洁易用的界面，一键开启各种修改功能，持续更新中。",
+                "tags": ["修改器", "国产", "中文游戏"],
+                "downloadUrl": "https://www.3dmgame.com/tools/",
+                "downloadName": "3DM下载"
+            },
+            {
+                "name": "3DM修改器",
+                "icon": "🗡️",
+                "desc": "3DM游戏网出品，支持大量热门单机游戏的修改功能。从经典老游戏到最新大作，覆盖面广泛。",
+                "tags": ["修改器", "3DM", "国内"],
+                "downloadUrl": "https://www.3dmgame.com/tools/",
+                "downloadName": "3DM下载"
+            },
+            {
+                "name": "Process Lasso",
+                "icon": "⚙️",
+                "desc": "Windows进程优化工具，可提升游戏性能。自动管理CPU核心分配、优先级别和电源方案，减少卡顿。",
+                "tags": ["优化", "系统工具", "性能"],
+                "downloadUrl": "https://bitsum.com/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "MSI Afterburner",
+                "icon": "📊",
+                "desc": "显卡超频和监控工具，实时显示FPS、温度、占用率等游戏性能数据。支持自定义风扇曲线和电压调节。",
+                "tags": ["显卡", "超频", "监控"],
+                "downloadUrl": "https://www.msi.com/Landing/afterburner/graphics-cards",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "DirectX 修复工具",
+                "icon": "🖥️",
+                "desc": "一键修复DirectX组件缺失问题，解决游戏启动报错。支持自动检测和修复DLL文件，兼容Windows全系列。",
+                "tags": ["修复", "必备", "系统组件"],
+                "downloadUrl": "https://www.3dmgame.com/tools/",
+                "downloadName": "3DM下载"
+            },
+            {
+                "name": "Visual C++ 运行库",
+                "icon": "📦",
+                "desc": "游戏必备运行库合集，包含VC++ 2005-2022全版本。解决游戏因缺少运行库而无法启动的问题。",
+                "tags": ["运行库", "必备", "系统组件"],
+                "downloadUrl": "https://www.3dmgame.com/tools/",
+                "downloadName": "3DM下载"
+            },
+            {
+                "name": "DXCPL 修复工具",
+                "icon": "🔧",
+                "desc": "DirectX控件面板修复工具，解决老旧游戏在Win10/Win11上的兼容性问题。一键修复疑难杂症。",
+                "tags": ["修复", "兼容性", "DX"],
+                "downloadUrl": "https://www.3dmgame.com/tools/",
+                "downloadName": "3DM下载"
+            },
+            {
+                "name": "GamePP",
+                "icon": "🎯",
+                "desc": "游戏加加，集游戏优化、FPS显示、截图录制于一体的全能工具。支持游戏内性能监控和超分辨率。",
+                "tags": ["优化", "监控", "录制"],
+                "downloadUrl": "https://gamepp.com/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "GeForce Experience",
+                "icon": "🖼️",
+                "desc": "NVIDIA官方显卡驱动管理工具，自动优化游戏画质设置。支持游戏录屏、截图分享和驱动更新。",
+                "tags": ["显卡", "优化", "NVIDIA"],
+                "downloadUrl": "https://www.nvidia.com/geforce/geforce-experience/",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "AMDRadeon Adrenalin",
+                "icon": "🎨",
+                "desc": "AMD官方显卡驱动和优化工具，支持FSR超分辨率技术。集成录制、直播和性能监控功能。",
+                "tags": ["显卡", "优化", "AMD"],
+                "downloadUrl": "https://www.amd.com/software",
+                "downloadName": "官网下载"
+            },
+            {
+                "name": "Parsec",
+                "icon": "🌐",
+                "desc": "低延迟游戏串流工具，可远程畅玩PC游戏。支持好友联机、远程协作，延迟低至毫秒级。",
+                "tags": ["串流", "远程", "联机"],
+                "downloadUrl": "https://parsec.app/",
+                "downloadName": "官网下载"
+            }
+        ];
+
+        function renderTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            if (tools.length === 0) {
+                grid.innerHTML = '<div class="no-results"><h2>没有找到匹配的工具</h2></div>';
+                return;
+            }
+            grid.innerHTML = tools.map(tool => `
+                <div class="tool-card">
+                    <div class="tool-card-icon">${tool.icon}</div>
+                    <h3>${tool.name}</h3>
+                    <div class="tool-desc">${tool.desc}</div>
+                    <div class="tool-tags">
+                        ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="tool-links">
+                        <a href="${tool.downloadUrl}" target="_blank" class="tool-link">${tool.downloadName}</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function searchTools() {
+            const input = document.getElementById('searchInput');
+            const keyword = input.value.trim().toLowerCase();
+            if (!keyword) {
+                renderTools(toolsData);
+                return;
+            }
+            const filtered = toolsData.filter(t =>
+                t.name.toLowerCase().includes(keyword) ||
+                t.desc.toLowerCase().includes(keyword) ||
+                t.tags.some(tag => tag.toLowerCase().includes(keyword))
+            );
+            renderTools(filtered);
+        }
+
+        // 回车搜索
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTools(toolsData);
+            document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') searchTools();
+            });
+        });
+    </script>
+</body>
+</html>

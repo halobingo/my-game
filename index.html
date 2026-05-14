@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - 游戏下载站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">GameHub</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="active">首页</a>
+                <a href="category.html?type=pc">PC游戏</a>
+                <a href="tools.html">常用工具</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索游戏...">
+                <button class="search-btn" onclick="handleSearch()">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 横幅区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>发现精品游戏</h1>
+                <p>精选优质游戏资源，等你来发现</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主内容区 -->
+    <main class="container main-content">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>游戏分类</h3>
+                <ul class="category-list">
+                    <li><a href="category.html?platform=pc">PC游戏</a></li>
+                    <li><a href="tools.html">常用工具下载</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>游戏类型</h3>
+                <ul class="category-list">
+                    <li><a href="category.html?category=action">动作</a></li>
+                    <li><a href="category.html?category=rpg">角色扮演</a></li>
+                    <li><a href="category.html?category=strategy">策略</a></li>
+                    <li><a href="category.html?category=adventure">冒险</a></li>
+                    <li><a href="category.html?category=casual">休闲</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 游戏列表 -->
+        <section class="games-section">
+            <div class="section-header">
+                <h2>热门游戏</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">全部</button>
+                    <button class="filter-tab" data-filter="action">动作</button>
+                    <button class="filter-tab" data-filter="rpg">角色扮演</button>
+                    <button class="filter-tab" data-filter="adventure">冒险</button>
+                    <button class="filter-tab" data-filter="strategy">策略</button>
+                    <button class="filter-tab" data-filter="simulation">模拟</button>
+                    <button class="filter-tab" data-filter="casual">休闲</button>
+                </div>
+            </div>
+            <div class="games-grid" id="gamesGrid">
+                <!-- 游戏卡片将通过JS动态加载 -->
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- 分页将通过JS动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GameHub. All rights reserved.</p>
+            <p>本页面仅作展示用途</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGames();
+            initFilters();
+        });
+    </script>
+</body>
+</html>

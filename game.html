@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏详情 - GameHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">GameHub</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="category.html?type=pc">PC游戏</a>
+                <a href="tools.html">常用工具</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索游戏...">
+                <button class="search-btn" onclick="handleSearch()">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 游戏详情 -->
+    <div class="container game-detail" id="gameDetail">
+        <div class="game-detail-header">
+            <div class="game-detail-cover" id="gameCover">
+                <!-- 游戏封面 -->
+            </div>
+            <div class="game-detail-info">
+                <h1 id="gameTitle">游戏名称</h1>
+                <div class="game-detail-meta">
+                    <span id="gamePlatform">平台</span>
+                    <span id="gameCategory">类型</span>
+                    <span id="gameLanguage">语言</span>
+                    <span id="gameSize">大小</span>
+                    <span id="gameDate">日期</span>
+                </div>
+                <p class="game-detail-desc" id="gameDesc">
+                    游戏描述内容...
+                </p>
+                <div class="game-detail-actions">
+                    <a href="#" class="download-btn" id="downloadLink">立即下载</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 截图展示 -->
+        <div class="game-screenshots">
+            <h2>游戏截图</h2>
+            <div class="screenshots-grid" id="screenshotsGrid">
+                <!-- 动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GameHub. All rights reserved.</p>
+            <p>本页面仅作展示用途</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/download-manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGames();
+            loadGameDetail();
+        });
+    </script>
+</body>
+</html>
